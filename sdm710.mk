@@ -205,7 +205,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
     android.hardware.power@1.0-service \
-    power.qcom:64
+    power.sdm710
 
 # Public Libraries
 PRODUCT_COPY_FILES += \
