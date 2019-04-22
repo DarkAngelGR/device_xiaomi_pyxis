@@ -59,7 +59,6 @@ on boot
     # For cpusets initialize for Silver only first and then Silver + Gold
     # Silver only configuration cannot work with 0-7
     write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-5,7
     write /dev/cpuset/background/cpus 4-5
     write /dev/cpuset/system-background/cpus 2-5
 
