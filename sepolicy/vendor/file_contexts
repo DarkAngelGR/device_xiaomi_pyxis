@@ -23,6 +23,9 @@
 /dev/goodix_fp                                u:object_r:fingerprint_device:s0
 /dev/vfsspi                                   u:object_r:fingerprint_device:s0
 
+# Fingerprint related nodes
+/sys/devices/virtual/touch/tp_dev/fod_status                       u:object_r:sysfs_tp_fodstatus:s0
+
 # GPS devices
 /dev/bbd_control                              u:object_r:gps_device:s0
 /dev/bbd_patch                                u:object_r:gps_device:s0
@@ -50,6 +53,7 @@
 /vendor/bin/hw/android\.hardware\.light@2\.0-service\.xiaomi_sdm710                                     u:object_r:hal_light_default_exec:s0
 /vendor/bin/hw/android\.hardware\.neuralnetworks@1\.1-service-qti                                       u:object_r:hal_neuralnetworks_default_exec:s0
 /vendor/bin/hw/vendor\.xiaomi\.hardware\.displayfeature@1\.0-service                                    u:object_r:hal_displayfeature_default_exec:s0
+/(system|vendor)/bin/hw/(lineage|vendor\.lineage)\.biometrics\.fingerprint\.inscreen@1.0-service\.xiaomi_[a-z0-9]+        u:object_r:hal_fod_sdm710_exec:s0
 
 # Persist files
 /mnt/vendor/persist/audio(/.*)?               u:object_r:persist_audio_file:s0
