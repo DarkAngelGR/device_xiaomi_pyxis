@@ -1,4 +1,4 @@
-on init
+on post-fs
     mount none /sbin/chargeonlymode /sbin/charger bind
     mount none /system/etc/audio_policy_configuration.xml /vendor/etc/audio/audio_policy_configuration.xml bind
     mount none /system/etc/placeholder /vendor/overlay/BluetoothResCommon.apk bind
