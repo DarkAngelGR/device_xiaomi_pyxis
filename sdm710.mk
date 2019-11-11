@@ -132,11 +132,11 @@ PRODUCT_PACKAGES += \
     vndk-sp
 
 # WiFi Display
-#PRODUCT_PACKAGES += \
-#    libnl
+PRODUCT_PACKAGES += \
+    libnl
 
-#PRODUCT_BOOT_JARS += \
-#    WfdCommon
+PRODUCT_BOOT_JARS += \
+    WfdCommon
 
 # Set boot SPL
 BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
