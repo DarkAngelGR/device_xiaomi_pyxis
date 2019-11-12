@@ -31,15 +31,11 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml
+    $(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
 
 # Camera
 PRODUCT_PACKAGES += \
     Snap
-
-# Common init scripts
-PRODUCT_PACKAGES += \
-    init.qcom.rc
 
 # Device-specific settings
 PRODUCT_PACKAGES += \
@@ -56,7 +52,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/fingerprint/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sdm710.rc:system/etc/init/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sdm710.rc
+    $(LOCAL_PATH)/fingerprint/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sdm710.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sdm710.rc
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -87,10 +83,6 @@ PRODUCT_PACKAGES += \
 # Net
 PRODUCT_PACKAGES += \
     netutils-wrapper-1.0
-
-# Placeholder
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/placeholder:system/etc/placeholder
 
 # Power
 PRODUCT_PACKAGES += \
