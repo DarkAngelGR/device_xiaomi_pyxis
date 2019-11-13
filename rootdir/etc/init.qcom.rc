@@ -27,9 +27,7 @@
 
 import /vendor/etc/init/hw/init.qcom.usb.rc
 import /vendor/etc/init/hw/init.msm.usb.configfs.rc
-import /vendor/etc/init/hw/init.qcom.test.rc
 import /vendor/etc/init/hw/init.target.rc
-import /vendor/etc/init/hw/init.qcom.factory.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -46,11 +44,6 @@ on early-init
     chown system graphics /sys/kernel/debug/dri/0/debug/recovery_dbgbus
     chown system graphics /sys/kernel/debug/dri/0/debug/recovery_vbif_dbgbus
 
-    chown root system /dev/kmsg
-    chmod 0620 /dev/kmsg
-    # Load WIGIG platform driver
-    #exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules msm_11ad_proxy
-
 on init
 
     # Support legacy paths
@@ -63,10 +56,6 @@ on init
     write /sys/fs/cgroup/memory/bg/memory.move_charge_at_immigrate 1
     chown root system /sys/fs/cgroup/memory/bg/tasks
     chmod 0660 /sys/fs/cgroup/memory/bg/tasks
-
-on post-fs
-    chmod 0755 /sys/kernel/debug/tracing
-    insmod /vendor/lib/modules/exfat.ko
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -352,8 +341,6 @@ on post-fs-data
     # Create /data/time folder for time-services
     mkdir /data/vendor/time/ 0700 system system
 
-    setprop vold.post_fs_data_done 1
-
     #Create a folder for SRS to be able to create a usercfg file
     #mkdir /data/data/media 0770 media media
 
@@ -413,6 +400,8 @@ on post-fs-data
 
     #Make MTU adjusting
     write /proc/sys/net/ipv4/tcp_mtu_probing 1
+
+    setprop vold.post_fs_data_done 1
 
     #Start move time data to /data/vendor once post-fs-data done
     start vendor.move_time_data
@@ -544,11 +533,9 @@ service qcom-c_main-sh /vendor/bin/init.class_main.sh
     user root
     oneshot
 
-#xiaomi bsp-wifi: start vendor.cnss_diag is added by bsp-wifi
 on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
     start wcnss-service
-    start vendor.cnss_diag
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
@@ -753,48 +740,6 @@ service wifi_ftmd /system/vendor/bin/wifi_ftmd
     disabled
     oneshot
 
-on property:vendor.wifi.ftmd.load=true
-    insmod /system/lib/modules/pronto/pronto_wlan.ko con_mode=5
-
-service vendor.cnss_diag /system/vendor/bin/cnss_diag -q
-    class late_start
-    user system
-    group system wifi inet net_admin sdcard_rw media_rw diag
-    disabled
-    oneshot
-
-service vendor.tcpdump /vendor/bin/tcpdump -i any -W 2 -C 2 -s 134 -w /data/vendor/wlan_logs/tcpdump.pcap
-    class main
-    user root
-    group root wifi
-    disabled
-    oneshot
-
-service sniffer /vendor/bin/tcpdump -i wlan0 -w /sdcard/wlan_logs/sniffer.pcap
-    class main
-    user root
-    group root
-    disabled
-    oneshot
-
-on property:sys.user.0.ce_available=true
-    start vendor.cnss_diag
-    start vendor.tcpdump
-
-service startpktlog /system/bin/iwpriv wlan0 pktlog 2
-    class main
-    user root
-    group root
-    disabled
-    oneshot
-
-service stoppktlog /system/bin/iwpriv wlan0 pktlog 0
-    class main
-    user root
-    group root
-    disabled
-    oneshot
-
 service vendor.cnss-daemon /system/vendor/bin/cnss-daemon -n -l
     class late_start
     user system
@@ -838,22 +783,6 @@ service loc_launcher /system/vendor/bin/loc_launcher
     user gps
     group gps
 
-on property:crypto.driver.load=1
-     insmod /system/lib/modules/qce.ko
-     insmod /system/lib/modules/qcedev.ko
-
-service drmdiag /system/vendor/bin/drmdiagapp
-    class late_start
-     user root
-     disabled
-     oneshot
-
-on property:drmdiag.load=1
-    start drmdiag
-
-on property:drmdiag.load=0
-    stop drmdiag
-
 service qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root
@@ -865,28 +794,10 @@ service vendor-sensor-sh /vendor/bin/init.qcom.sensors.sh
     user root
     oneshot
 
-service crashdata-sh /vendor/bin/init.qcom.crashdata.sh
-    class late_start
-    user root
-    oneshot
-
 service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     class late_start
     user root
     group root system wakelock graphics
-    disabled
-    oneshot
-
-service qti-testscripts /system/bin/sh /system/etc/init.qcom.testscripts.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-    seclabel u:r:qti-testscripts:s0
-
-service wifi-sdio-on /vendor/bin/init.qcom.sdio.sh
-    class late_start
-    group wifi inet
     disabled
     oneshot
 
@@ -972,12 +883,6 @@ service charger /sbin/chargeonlymode
     group system graphics
     seclabel u:r:charger:s0
 
-service vendor.ssr_diag /system/vendor/bin/ssr_diag
-    class late_start
-    user system
-    group system
-    disabled
-
 service hvdcp /system/bin/hvdcp
     class core
     user root
@@ -1003,20 +908,6 @@ on property:sys.qbcharger.enable=true
 
 on property:sys.qbcharger.enable=false
     stop qbcharger
-
-service diag_mdlog_start /system/bin/diag_mdlog_system -n 20
-    class late_start
-    user shell
-    group system oem_2901 sdcard_rw sdcard_r media_rw
-    disabled
-    oneshot
-
-service diag_mdlog_stop /system/bin/diag_mdlog_system -k
-    class late_start
-    user shell
-    group system oem_2901 sdcard_rw sdcard_r media_rw
-    disabled
-    oneshot
 
 service qlogd /system/xbin/qlogd
     socket qlogd stream 0662 system system
