@@ -278,7 +278,7 @@ vendor/lib64/vendor.qti.hardware.cvp@1.0-halimpl.so
 vendor/lib64/vendor.qti.hardware.cvp@1.0.so
 
 # Charger
--sbin/charger:sbin/chargeonlymode;rootfs|ee410de1d39143c4a7d3f2622a75b2e51a3dab2b
+bin/charger
 vendor/bin/hvdcp_opti
 
 # Consumerir
