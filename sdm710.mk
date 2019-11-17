@@ -336,17 +336,21 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     hostapd \
+    libcld80211 \
+    libkeystore-engine-wifi-hidl \
+    libkeystore-wifi-hidl \
     libqsap_sdk \
     libQWiFiSoftApCfg \
+    libwifi-hal-ctrl \
     libwifi-hal-qcom \
     libwpa_client \
+    vendor.qti.hardware.wifi.hostapd@1.1.vendor \
+    vendor.qti.hardware.wifi.supplicant@2.1.vendor \
     wificond \
     wifilogd \
     wpa_cli \
     wpa_supplicant \
-    wpa_supplicant.conf \
-    vendor.qti.hardware.wifi.hostapd@1.1.vendor \
-    vendor.qti.hardware.wifi.supplicant@2.1.vendor
+    wpa_supplicant.conf
 
 # VNDK framework detect
 PRODUCT_PACKAGES += \
