@@ -99,8 +99,11 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.3-service \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \
+    libdrm.vendor \
+    libgui_vendor \
     libvulkan \
-    vendor.display.config@1.0
+    vendor.display.config@1.7 \
+    vendor.display.config@1.7.vendor
 
 # DRM
 PRODUCT_PACKAGES += \
