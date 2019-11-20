@@ -76,6 +76,9 @@ TARGET_USES_QTI_CAMERA_DEVICE := true
 # Charger Mode
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
+# Crypto
+TARGET_HW_DISK_ENCRYPTION := true
+
 # Dex
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
@@ -99,6 +102,9 @@ TARGET_USES_ION := true
 DEVICE_FRAMEWORK_MANIFEST_FILE := $(COMMON_PATH)/framework_manifest.xml
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
+
+# Keystore
+TARGET_PROVIDES_KEYMASTER := true
 
 # Partitions
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
