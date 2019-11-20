@@ -101,6 +101,8 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-service \
     libdrm.vendor \
     libgui_vendor \
+    libtinyxml \
+    libtinyxml2 \
     libvulkan \
     vendor.display.config@1.7 \
     vendor.display.config@1.7.vendor
@@ -177,6 +179,8 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_PACKAGES += \
+    libhdmiedid \
+    libhfp \
     libc2dcolorconvert \
     libOmxAacEnc \
     libOmxAmrEnc \
@@ -261,6 +265,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt \
 
+# QMI
+PRODUCT_PACKAGES += \
+    libjson
+
 # QTI
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml \
@@ -275,7 +283,9 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.config@1.1 \
     android.hardware.radio.config@1.2 \
     android.hardware.secure_element@1.0 \
-    librmnetctl
+    libprotobuf-cpp-full \
+    librmnetctl \
+    libxml2
 
 # RCS
 PRODUCT_PACKAGES += \
@@ -300,7 +310,8 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
-    android.hardware.sensors@1.0-service
+    android.hardware.sensors@1.0-service \
+    libsensorndkbridge
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
