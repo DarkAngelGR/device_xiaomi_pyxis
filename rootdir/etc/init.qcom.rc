@@ -252,6 +252,9 @@ on post-fs-data
     #Create folder of camera
     mkdir /data/vendor/camera 0770 camera camera
 
+	# Create dir reserved for IPA
+	mkdir /data/vendor/ipa 0770 radio radio
+	chmod 0770 /data/vendor/ipa
 
     #Create directory for tftp
     mkdir /data/vendor/tombstones 0771 system system
