@@ -105,7 +105,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.qcom.bluetooth.twsp_state.enabled=false \
     ro.bluetooth.a2dp_offload.supported=true \
     ro.bluetooth.emb_wp_mode=true \
-    ro.bluetooth.library_name=libbluetooth_qti.so \
     ro.bluetooth.wipower=true \
     vendor.qcom.bluetooth.soc=cherokee
 
