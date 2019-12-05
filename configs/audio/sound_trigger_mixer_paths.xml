@@ -149,7 +149,7 @@
     </path>
 
     <path name="listen-ape-handset-mic">
-        <ctl name="DEC1 Volume" value="84" />
+        <ctl name="DEC1 Volume" value="90" />
         <ctl name="DEC1 MUX" value="DMIC3" />
     </path>
 
