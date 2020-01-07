@@ -196,6 +196,9 @@ telephony.lteOnCdmaDevice=1
 vendor.hw.fm.init=0
 ro.vendor.fm.use_audio_session=true
 
+# Time
+persist.vendor.delta_time.enable=true
+
 # VoLTE
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
