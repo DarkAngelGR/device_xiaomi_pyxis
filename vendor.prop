@@ -141,7 +141,7 @@ ro.vendor.audio.soundtrigger.training.level=60
 ro.vendor.audio.soundtrigger.hist.duration=1500
 
 # RCS
-persist.rcs.supported=0
+persist.rcs.supported=1
 
 # Fwk detect
 ro.vendor.qti.va_aosp.support=1
@@ -174,6 +174,12 @@ ro.com.android.dataroaming=true
 ro.telephony.default_cdma_sub=0
 ro.telephony.default_network=22,22
 ro.telephony.iwlan_operation_mode=legacy
+persist.data.iwlan=1
+persist.data.iwlan.ipsec.ap=1
+persist.sys.cust.lte_config=true
+persist.radio.VT_ENABLE=1
+persist.radio.volte.dan_support=true
+
 telephony.lteOnCdmaDevice=1
 
 # FM
