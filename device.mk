@@ -164,7 +164,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_pyxis \
+    vendor.lineage.biometrics.fingerprint.inscreen@1.1-service.xiaomi_pyxis \
     vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor \
     gfscreenoffd
 
