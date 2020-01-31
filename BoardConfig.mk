@@ -153,9 +153,6 @@ TARGET_USES_DRM_PP := true
 # Media
 TARGET_USES_ION := true
 
-# Power
-TARGET_TAP_TO_WAKE_NODE := "/dev/input/event2"
-
 # GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 GNSS_HIDL_VERSION := 2.0
