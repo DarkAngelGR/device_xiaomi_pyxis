@@ -1449,8 +1449,13 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="carrier_rtt_auto_upgrade" value="true" />
         <boolean name="carrier_volte_tty_supported_bool" value="false" />
     </carrier_config>
-
-    <carrier_config mcc="310" mnc="080">
+	<carrier_config mcc="404" mnc="06">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+        <carrier_config mcc="404" mnc="61">
+        <boolean name="carrier_volte_available_bool" value="true" />
+    </carrier_config>
+	<carrier_config mcc="310" mnc="080">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_vt_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
