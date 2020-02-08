@@ -1151,3 +1151,7 @@ product/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON
 product/priv-app/dpmserviceapp/dpmserviceapp.apk
 product/priv-app/ims/ims.apk
 product/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+
+# FOD Calibration
+etc/goodix/BMatrix.so|28e9ff5f39e36b92ac3b7633b3847def8e6949e3
+etc/goodix/caliParamsInfo.so|95a4668aa54107250e416af070d9e93c6e3b243c
