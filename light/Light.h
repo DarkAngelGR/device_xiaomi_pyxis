@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #ifndef ANDROID_HARDWARE_LIGHT_V2_0_LIGHT_H
 #define ANDROID_HARDWARE_LIGHT_V2_0_LIGHT_H
 
@@ -46,7 +45,7 @@ class Light : public ILight {
 
   private:
     void handleBacklight(const LightState& state);
-    void handleNotification(const LightState& state, size_t index);
+    void handleRgb(const LightState& state, size_t index);
 
     std::mutex mLock;
     std::unordered_map<Type, std::function<void(const LightState&)>> mLights;

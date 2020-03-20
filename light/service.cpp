@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 The LineageOS Project
+ * Copyright 2018 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.light@2.0-service.xiaomi_sdm710"
+#define LOG_TAG "android.hardware.light@2.0-service.xiaomi_pyxis"
 
 #include <android-base/logging.h>
 #include <hidl/HidlTransportSupport.h>
@@ -28,35 +28,23 @@ using android::hardware::light::V2_0::ILight;
 using android::hardware::light::V2_0::implementation::Light;
 
 using android::OK;
-using android::sp;
 using android::status_t;
 
 int main() {
-    status_t status;
-    sp<ILight> service = nullptr;
+    android::sp<ILight> service = new Light();
 
-    LOG(INFO) << "Light HAL service 2.0 is starting.";
+    configureRpcThreadpool(1, true);
 
-    service = new Light();
-    if (service == nullptr) {
-        LOG(ERROR) << "Can not create an instance of Light HAL Iface, exiting.";
-        goto shutdown;
-    }
-
-    configureRpcThreadpool(1, true /*callerWillJoin*/);
-
-    status = service->registerAsService();
+    status_t status = service->registerAsService();
     if (status != OK) {
-        LOG(ERROR) << "Could not register service for Light HAL Iface (" << status << ")";
-        goto shutdown;
+        LOG(ERROR) << "Cannot register Light HAL service.";
+        return 1;
     }
 
-    LOG(INFO) << "Light HAL service is ready.";
-    joinRpcThreadpool();
-    // Should not pass this line
+    LOG(INFO) << "Light HAL service ready.";
 
-shutdown:
-    // In normal operation, we don't expect the thread pool to exit
-    LOG(ERROR) << "Light HAL service is shutting down.";
+    joinRpcThreadpool();
+
+    LOG(ERROR) << "Light HAL service failed to join thread pool.";
     return 1;
 }
