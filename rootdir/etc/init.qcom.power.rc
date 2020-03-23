@@ -105,13 +105,14 @@ on enable-low-power
     # to one of the CPU from the default IRQ affinity mask.
     write /proc/irq/default_smp_affinity "3f"
 
-    # Core control parameters
-    write /sys/devices/system/cpu/cpu4/core_ctl/min_cpus 4
-    write /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres 60
-    write /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres 40
-    write /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms 100
-    write /sys/devices/system/cpu/cpu4/core_ctl/is_big_cluster 1
-    write /sys/devices/system/cpu/cpu4/core_ctl/task_thres 8
+    # Core control parameters on silver
+    write /sys/devices/system/cpu/cpu0/core_ctl/not_preferred "0 0 0 0 1 1"
+    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 4
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 60
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 40
+    write /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms 100
+    write /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster 0
+    write /sys/devices/system/cpu/cpu0/core_ctl/task_thres 8
 
     # Setting b.L scheduler parameters
     write /proc/sys/kernel/sched_upmigrate 96
@@ -183,8 +184,8 @@ on enable-low-power
     # Set cpuset parameters
     write /dev/cpuset/background/cpus 0-5
     write /dev/cpuset/system-background/cpus 0-5
-    write /dev/cpuset/foreground/boost/cpus 4-7
-    write /dev/cpuset/foreground/cpus 0-2,4-7
+    write /dev/cpuset/foreground/boost/cpus 6-7
+    write /dev/cpuset/foreground/cpus 0-2,6-7
     write /dev/cpuset/top-app/cpus 0-7
 
     # Turn off scheduler boost at the end
