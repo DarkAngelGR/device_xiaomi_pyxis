@@ -603,6 +603,7 @@ service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqb
     class core
     user root
     group root
+    disabled
 
 service time_daemon /vendor/bin/time_daemon
     class main
