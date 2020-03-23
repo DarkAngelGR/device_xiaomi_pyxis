@@ -55,6 +55,9 @@ use.voice.path.for.pcm.voip=true
 # Netflix custom property
 ro.netflix.bsp_rev=Q670-14477-1
 
+# Media
+media.settings.xml=/vendor/etc/media_profiles_vendor.xml
+
 # Time
 persist.timed.enale=true
 
