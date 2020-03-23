@@ -157,10 +157,6 @@ TARGET_HAS_WIDE_COLOR_DISPLAY := true
 # Media
 TARGET_USES_ION := true
 
-# NFC
-TARGET_USES_NQ_NFC := true
-BOARD_NFC_CHIPSET := pn553
-
 # Power
 TARGET_TAP_TO_WAKE_NODE := "/dev/input/event2"
 
