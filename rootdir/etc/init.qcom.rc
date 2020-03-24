@@ -129,23 +129,7 @@ on boot
     chown system system /sys/class/thermal/thermal_message/sconfig
     write /sys/class/thermal/thermal_message/sconfig 10
 
-    # Change owner of led
-    chown system system /sys/class/leds/white/brightness
-    chown system system /sys/class/leds/white/blink
-    chown system system /sys/class/leds/red/blink
-    chown system system /sys/class/leds/green/blink
-    chown system system /sys/class/leds/blue/blink
-
-     # TO DO CLEANUPTHIS
-    chmod 666 /sys/class/drm/card0-DSI-1/disp_count
-    chown system system /sys/class/drm/card0-DSI-1/dim_alpha
-    chown system system /sys/class/drm/card0-DSI-1/fod_ui_ready
-    chown system system /sys/class/drm/card0-DSI-1/dim_layer_enable
-    chown system system /sys/class/drm/card0-DSI-1/dimlayer_hbm_enabled
-    chown system system /sys/class/touch/tp_dev/fod_status
-    chown system system /sys/class/backlight/panel0-backlight/brightness_clone
     chown system system /sys/kernel/hbtp/display_pwr
-    chown system system /sys/class/drm/card0-DSI-1/disp_param
 
     # Load WLAN driver
     chown wifi wifi /sys/module/wlan/parameters/fwpath
@@ -612,12 +596,6 @@ service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqb
     user root
     group root
     disabled
-
-service time_daemon /vendor/bin/time_daemon
-    class main
-    user system
-    group system
-    capabilities SYS_TIME
 
 # Set vendor-ril lib path based on Meta version
 on property:vendor.rild.libpath=*
