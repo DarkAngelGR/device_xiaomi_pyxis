@@ -1966,7 +1966,49 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-							  
+	
+    <carrier_config mcc="470" mnc="01">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="config_update_service_status" value="false"/>
+    </carrier_config>	
+	
+    <carrier_config mcc="470" mnc="02">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="config_update_service_status" value="false"/>
+    </carrier_config>
+	
+    <carrier_config mcc="470" mnc="03">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="config_update_service_status" value="false"/>
+    </carrier_config>
+	
+    <carrier_config mcc="470" mnc="04">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="config_update_service_status" value="false"/>
+    </carrier_config>
+	
+    <carrier_config mcc="470" mnc="05">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="config_update_service_status" value="false"/>
+    </carrier_config>
+	
+    <carrier_config mcc="470" mnc="06">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="config_update_service_status" value="false"/>
+    </carrier_config>
+	
+    <carrier_config mcc="470" mnc="07">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="config_update_service_status" value="false"/>
+    </carrier_config>
+	
     <carrier_config>
         <string-array name="ratchet_rat_families" num="3">
         <item value="1,2" />
