@@ -59,10 +59,10 @@ on boot
     # For cpusets initialize for Silver only first and then Silver + Gold
     # Silver only configuration cannot work with 0-7
     write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-7
-    write /dev/cpuset/foreground/boost/cpus 0-7
-    write /dev/cpuset/background/cpus 0-7
-    write /dev/cpuset/system-background/cpus 0-7
+    write /dev/cpuset/foreground/cpus 0-5,7
+    write /dev/cpuset/background/cpus 4-5
+    write /dev/cpuset/system-background/cpus 2-5
+    write /dev/cpuset/restricted/cpus 2-5
 
 on property:init.svc.vendor.charger=running
     setprop persist.sys.usb.config mass_storage
@@ -72,8 +72,8 @@ on property:init.svc.vendor.charger=running
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
+    write /sys/devices/system/cpu/cpu4/online 0
     write /sys/devices/system/cpu/cpu5/online 0
-    write /sys/devices/system/cpu/cpu6/online 0
     write /sys/devices/system/cpu/cpu7/online 0
     wait /dev/block/bootdevice
 
@@ -134,8 +134,11 @@ on enable-low-power
     write /sys/module/cpu_boost/parameters/input_boost_freq "0:1209600"
     write /sys/module/cpu_boost/parameters/input_boost_ms 40
 
-    # Limit the min frequency to 825MHz
-    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq 652800
+    # Limit the min frequency of LC to 576MHz
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 576000
+
+    # Limit the min frequency of BC to 825MHz
+    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq 825600
 
     # Enable oom_reaper
     write /sys/module/lowmemorykiller/parameters/oom_reaper 1
@@ -147,11 +150,14 @@ on enable-low-power
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms 4
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 68
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory 20
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length 0
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length 10
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/down_thres 80
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 0
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
+
+    write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
+    write /sys/class/devfreq/soc:qcom,mincpubw/polling_interval 10
 
     # Enable mem_latency governor for DDR scaling
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
@@ -174,12 +180,6 @@ on enable-low-power
     # Enable userspace governor for L3 cdsp nodes
     write /sys/class/devfreq/soc:qcom,l3-cdsp/governor "userspace"
     chown system /sys/class/devfreq/soc:qcom,l3-cdsp/userspace/set_freq
-
-    # Gold L3 ratio ceil
-    write /sys/class/devfreq/soc:qcom,l3-cpu6/mem_latency/ratio_ceil 4000
-
-    write /sys/class/devfreq/soc:qcom,mincpubw/governor "compute"
-    write /sys/class/devfreq/soc:qcom,mincpubw/polling_interval 10
 
     # Set cpuset parameters
     write /dev/cpuset/background/cpus 0-5
