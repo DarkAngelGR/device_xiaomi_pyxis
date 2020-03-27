@@ -29,68 +29,64 @@
 
 #define LOG_NIDEBUG 0
 
-#include <errno.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+#include <dirent.h>
 #include <dlfcn.h>
+#include <errno.h>
+#include <fcntl.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <unistd.h>
 
-#define LOG_TAG "QTI PowerHAL"
-#include <utils/Log.h>
+#define LOG_TAG "QCOM PowerHAL"
 #include <hardware/hardware.h>
 #include <hardware/power.h>
 #include <linux/input.h>
+#include <utils/Log.h>
 
-#include "utils.h"
 #include "hint-data.h"
 #include "performance.h"
 #include "power-common.h"
+#include "utils.h"
 
 static struct hint_handles handles[NUM_HINTS];
 
-void power_init()
-{
+void power_init() {
     ALOGI("Initing");
 
-    for (int i=0; i<NUM_HINTS; i++) {
-        handles[i].handle       = 0;
-        handles[i].ref_count    = 0;
+    for (int i = 0; i < NUM_HINTS; i++) {
+        handles[i].handle = 0;
+        handles[i].ref_count = 0;
     }
 }
 
-int __attribute__ ((weak)) power_hint_override(power_hint_t hint,
-        void *data)
-{
+int __attribute__((weak)) power_hint_override(power_hint_t hint, void* data) {
     return HINT_NONE;
 }
 
 /* Declare function before use */
 void interaction(int duration, int num_args, int opt_list[]);
 
-void power_hint(power_hint_t hint, void *data)
-{
+void power_hint(power_hint_t hint, void* data) {
     /* Check if this hint has been overridden. */
     if (power_hint_override(hint, data) == HINT_HANDLED) {
         /* The power_hint has been handled. We can skip the rest. */
         return;
     }
-    switch(hint) {
+
+    switch (hint) {
         case POWER_HINT_VSYNC:
-        break;
+            break;
         case POWER_HINT_VR_MODE:
             ALOGI("VR mode power hint not handled in power_hint_override");
             break;
-        case POWER_HINT_INTERACTION:
-        {
+        case POWER_HINT_INTERACTION: {
             int resources[] = {0x702, 0x20F, 0x30F};
             int duration = 3000;
 
-            interaction(duration, sizeof(resources)/sizeof(resources[0]), resources);
-        }
-        break;
+            interaction(duration, sizeof(resources) / sizeof(resources[0]), resources);
+        } break;
         //fall through below, hints will fail if not defined in powerhint.xml
         case POWER_HINT_SUSTAINED_PERFORMANCE:
         case POWER_HINT_VIDEO_ENCODE:
@@ -110,17 +106,17 @@ void power_hint(power_hint_t hint, void *data)
                     ALOGE("Lock for hint: %X was not acquired, cannot be released", hint);
                 }
             }
-        break;
+            break;
+        default:
+            break;
     }
 }
 
-int __attribute__ ((weak)) set_interactive_override(int on)
-{
+int __attribute__((weak)) set_interactive_override(int on) {
     return HINT_NONE;
 }
 
-void set_interactive(int on)
-{
+void set_interactive(int on) {
     if (!on) {
         /* Send Display OFF hint to perf HAL */
         perf_hint_enable(VENDOR_HINT_DISPLAY_OFF, 0);
@@ -136,11 +132,49 @@ void set_interactive(int on)
     ALOGI("Got set_interactive hint");
 }
 
+int open_ts_input() {
+    int fd = -1;
+    DIR *dir = opendir("/dev/input");
+
+    if (dir != NULL) {
+        struct dirent *ent;
+
+        while ((ent = readdir(dir)) != NULL) {
+            if (ent->d_type == DT_CHR) {
+                char absolute_path[PATH_MAX] = {0};
+                char name[80] = {0};
+
+                strcpy(absolute_path, "/dev/input/");
+                strcat(absolute_path, ent->d_name);
+
+                fd = open(absolute_path, O_RDWR);
+                if (ioctl(fd, EVIOCGNAME(sizeof(name) - 1), &name) > 0) {
+                    if (strcmp(name, "atmel_mxt_ts") == 0 || strcmp(name, "fts_ts") == 0 ||
+                            strcmp(name, "fts") == 0 || strcmp(name, "ft5x46") == 0 ||
+                            strcmp(name, "synaptics_dsx") == 0 ||
+                            strcmp(name, "NVTCapacitiveTouchScreen") == 0)
+                        break;
+                }
+
+                close(fd);
+                fd = -1;
+            }
+        }
+
+        closedir(dir);
+    }
+
+    return fd;
+}
+
 void set_feature(feature_t feature, int state) {
     switch (feature) {
-#ifdef TAP_TO_WAKE_NODE
         case POWER_FEATURE_DOUBLE_TAP_TO_WAKE: {
-            int fd = open(TAP_TO_WAKE_NODE, O_RDWR);
+            int fd = open_ts_input();
+            if (fd == -1) {
+                ALOGW("DT2W won't work because no supported touchscreen input devices were found");
+                return;
+            }
             struct input_event ev;
             ev.type = EV_SYN;
             ev.code = SYN_CONFIG;
@@ -148,7 +182,6 @@ void set_feature(feature_t feature, int state) {
             write(fd, &ev, sizeof(ev));
             close(fd);
         } break;
-#endif
         default:
             break;
     }
