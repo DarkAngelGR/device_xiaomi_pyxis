@@ -221,6 +221,7 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@5.0-impl \
     android.hardware.soundtrigger@2.2-impl \
     audio.a2dp.default \
+    audio.hearing_aid.default \
     audio.primary.sdm710 \
     audio.r_submix.default \
     audio.usb.default \
