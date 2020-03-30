@@ -230,6 +230,7 @@ PRODUCT_PACKAGES += \
     libcomprcapture \
     libexthwplugin \
     libhdmiedid \
+    libhdmipassthru \
     libhfp \
     libaudio-resampler \
     libaudioroute \
@@ -239,6 +240,7 @@ PRODUCT_PACKAGES += \
     libsndmonitor \
     libspkrprot \
     libtinycompress \
+    libtinycompress.vendor \
     libvolumelistener \
     tinymix
 
