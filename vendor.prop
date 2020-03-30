@@ -192,6 +192,7 @@ vendor.voice.path.for.pcm.voip=false
 
 # FM
 vendor.hw.fm.init=0
+ro.vendor.fm.use_audio_session=true
 
 # VoLTE
 persist.dbg.volte_avail_ovr=1
