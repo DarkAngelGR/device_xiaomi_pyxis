@@ -2609,6 +2609,10 @@
         <ctl name="ADC2 MUX" value="INP3" />
     </path>
 
+    <path name="hph-highquality-mode">
+        <ctl name="RX HPH Mode" value="HD2" />
+    </path>
+
     <path name="hph-lowpower-mode">
         <ctl name="RX HPH Mode" value="NORMAL_MODE" />
     </path>
