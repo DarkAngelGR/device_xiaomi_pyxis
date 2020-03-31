@@ -29,10 +29,6 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 # FOD animations
 EXTRA_FOD_ANIMATIONS := true
 
-# Recorder
-PRODUCT_PACKAGES += \
-    OPScreenRecorder
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
