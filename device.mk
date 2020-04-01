@@ -162,6 +162,10 @@ PRODUCT_PACKAGES += \
     com.quicinc.cne \
     services-ext
 
+# Configstore
+PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.1-service
+
 # Context hub HAL
 PRODUCT_PACKAGES += \
     android.hardware.contexthub@1.0-impl.generic \
