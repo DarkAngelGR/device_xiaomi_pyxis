@@ -1,17 +1,20 @@
 # Audio
 af.fast_track_multiplier=1
-audio.offload.min.duration.secs=40
-audio.deep_buffer.media=true
 persist.vendor.audio.button_jack.profile=volume
 persist.vendor.audio.button_jack.switch=0
 persist.vendor.audio.fluence.speaker=true
 persist.vendor.audio.fluence.voicecall=true
+persist.vendor.audio.fluence.voicecomm=true
 persist.vendor.audio.fluence.voicerec=false
+persist.vendor.audio.fluence.audiorec=false
+persist.vendor.audio.fluence.tmic.enabled=false
 persist.vendor.audio.ras.enabled=false
-persist.vendor.audio.hifi=false
+persist.vendor.audio.hifi.int_codec=true
 ro.vendor.audio.sdk.fluencetype=fluence
 ro.vendor.audio.sdk.ssr=false
 ro.vendor.audio.soundfx.usb=true
+vendor.audio.keep_alive.disabled=false
+vendor.audio.volume.headset.gain.depcal=true
 vendor.audio.adm.buffering.ms=6
 vendor.audio.dolby.ds2.enabled=false
 vendor.audio.dolby.ds2.hardbypass=false
@@ -40,9 +43,9 @@ vendor.audio.feature.fm.enable=true
 vendor.audio.feature.hdmi_edid.enable=true
 vendor.audio.feature.hdmi_passthrough.enable=true
 vendor.audio.feature.hfp.enable=true
-vendor.audio.feature.hifi_audio.enable=false
+vendor.audio.feature.hifi_audio.enable=true
 vendor.audio.feature.hwdep_cal.enable=false
-vendor.audio.feature.incall_music.enable=false
+vendor.audio.feature.incall_music.enable=true
 vendor.audio.feature.keep_alive.enable=false
 vendor.audio.feature.kpi_optimize.enable=true
 vendor.audio.feature.maxx_audio.enable=false
@@ -77,12 +80,11 @@ vendor.audio.safx.pbe.enabled=false
 vendor.audio.tunnel.encode=false
 vendor.audio.use.sw.alac.decoder=true
 vendor.audio.use.sw.ape.decoder=true
-ro.af.client_heap_size_kbyte=7168
-ro.config.media_vol_steps=25
-ro.config.vc_call_vol_steps=7
+vendor.voice.path.for.pcm.voip=false
 
 # Bluetooth
 persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
+persist.bluetooth.a2dp_offload.disabled=false
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 persist.vendor.bt.aac_frm_ctl.enabled=true
 persist.vendor.bt.enable.splita2dp=true
@@ -114,7 +116,6 @@ persist.sys.sf.color_saturation=1.0
 vendor.display.enable_default_color_mode=1
 
 # Media
-audio.offload.video=true
 debug.stagefright.ccodec=1
 debug.stagefright.omx_default_rank.sw-audio=1
 debug.stagefright.omx_default_rank=0
@@ -183,7 +184,6 @@ ro.telephony.default_cdma_sub=0
 ro.telephony.default_network=22,22
 ro.telephony.iwlan_operation_mode=legacy
 telephony.lteOnCdmaDevice=1
-vendor.voice.path.for.pcm.voip=false
 
 # FM
 vendor.hw.fm.init=0

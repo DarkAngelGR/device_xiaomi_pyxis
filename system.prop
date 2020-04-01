@@ -1,3 +1,11 @@
+# Audio
+audio.offload.min.duration.secs=30
+audio.offload.video=true
+audio.deep_buffer.media=true
+ro.af.client_heap_size_kbyte=7168
+ro.config.media_vol_steps=25
+ro.config.vc_call_vol_steps=7
+
 # Bluetooth
 persist.bluetooth.bqr.event_mask=14
 persist.bluetooth.bqr.min_interval_ms=500
