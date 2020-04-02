@@ -329,17 +329,27 @@
     <ctl name="RX3 Digital Volume" value="88" />
     <ctl name="RX4 Digital Volume" value="88" />
     <ctl name="RX5 Digital Volume" value="88" />
-    <ctl name="ADC1 Volume" value="8" />
-    <ctl name="ADC2 Volume" value="8" />
-    <ctl name="ADC3 Volume" value="8" />
+    <ctl name="ADC1 Volume" value="6" />
+    <ctl name="ADC2 Volume" value="6" />
+    <ctl name="ADC3 Volume" value="6" />
     <ctl name="DEC1 Volume" value="84" />
     <ctl name="DEC2 Volume" value="84" />
     <ctl name="DEC3 Volume" value="84" />
     <ctl name="DEC4 Volume" value="84" />
 
     <!-- Compander controls -->
-    <ctl name="COMP1 Switch" value="1" />
-    <ctl name="COMP2 Switch" value="1" />
+    <ctl name="COMP1 Switch" value="0" />
+    <ctl name="COMP2 Switch" value="0" />
+
+    <!-- XIAOMI MEME THINGS -->
+    <ctl name="PRIM_MI2S_RX Channels" value="Two" />
+    <ctl name="PRIM_MI2S_RX Format" value="S24_LE" />
+    <ctl name="PRIM_MI2S_RX SampleRate" value="KHZ_48" />
+    <ctl name="PRIM_MI2S_TX Channels" value="Two" />
+    <ctl name="PRIM_MI2S_TX Format" value="S24_LE" />
+    <ctl name="PRIM_MI2S_TX SampleRate" value="KHZ_48" />
+    <ctl name="PRI_MI2S_RX_VI_FB_MUX" value="ZERO" />
+    <ctl name="PRIM_MI2S_RX SampleRate" value="KHZ_48" />
 
     <!-- MUX controls -->
     <ctl name="DEC1 MUX" value="ZERO" />
@@ -520,11 +530,9 @@
         <ctl name="RDAC2 MUX" value="RX1" />
         <ctl name="EAR_S" value="Switch" />
         <ctl name="INT0_MI2S_RX Channels" value="One" />
-        <!--ctl name="INT0_MI2S_RX SampleRate" value="KHZ_96" /-->
     </path>
 
     <path name="ultrasound-input">
-       	<!--<ctl name="Ultrasound Microphone Index" value="1" /> -->
         <ctl name="DEC1 MUX" value="ADC2" />
         <ctl name="ADC2 MUX" value="INP3" />
         <ctl name="DEC1 Volume" value="84" />
@@ -2305,7 +2313,7 @@
     </path>
 
     <path name="incall_music_uplink speaker-and-bt-sco-wb">
-        <path name="incall_music_uplink" />
+        <path name="incall_music_uplink speaker" />
     </path>
 
     <path name="incall_music_uplink afe-proxy">
@@ -3387,7 +3395,6 @@
     </path>
 
     <path name="cirrus-sp-unload-firmware">
-        <!--<ctl name="RCV DSP Booted" value="0" /> -->
         <ctl name="DSP Booted" value="0" />
         <ctl name="DSP1 Preload Switch" value="0" />
     </path>
