@@ -233,7 +233,6 @@ PRODUCT_PACKAGES += \
     libcomprcapture \
     libexthwplugin \
     libhdmiedid \
-    libhdmipassthru \
     libhfp \
     libaudio-resampler \
     libaudioroute \
