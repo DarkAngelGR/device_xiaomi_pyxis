@@ -31,6 +31,7 @@ namespace implementation {
 using ::android::sp;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
+using V1_0::IFingerprintInscreenCallback;
 using ::vendor::xiaomi::hardware::fingerprintextension::V1_0::IXiaomiFingerprint;
 
 class FingerprintInscreen : public IFingerprintInscreen {
@@ -50,7 +51,7 @@ public:
     Return<void> setLongPressEnabled(bool enabled) override;
     Return<int32_t> getDimAmount(int32_t brightness) override;
     Return<bool> shouldBoostBrightness() override;
-    Return<void> setCallback(const sp<V1_0::IFingerprintInscreenCallback>& callback) override;
+    Return<void> setCallback(const sp<IFingerprintInscreenCallback>& callback) override;
     Return<void> switchHbm(bool enabled) override;
 
 private:
