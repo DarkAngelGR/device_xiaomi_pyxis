@@ -70,6 +70,7 @@
         <usecase name="USECASE_AUDIO_RECORD_COMPRESS5" type="in" id="44"/>
         <usecase name="USECASE_AUDIO_RECORD_COMPRESS6" type="in" id="45"/>
         <usecase name="USECASE_AUDIO_A2DP_ABR_FEEDBACK" type="in" id="12"/>
+        <usecase name="USECASE_AUDIO_EC_REF_LOOPBACK" type="in" id="27"/>
     </pcm_ids>
     <config_params>
         <!-- In the below value string, the value indicates default mono -->
@@ -213,6 +214,12 @@
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER_AND_VOICE_HEADPHONES" backend="speaker-and-headphones" interface="PRI_MI2S_RX-and-INT0_MI2S_RX"/>
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER_AND_VOICE_ANC_HEADSET" backend="speaker-and-headphones" interface="PRI_MI2S_RX-and-INT0_MI2S_RX"/>
     </backend_names>
+    <custom_mtmx_params param_id="1" in_channel_count="2" out_channel_count="4" usecase="USECASE_AUDIO_PLAYBACK_DEEP_BUFFER" snd_device="SND_DEVICE_OUT_SPEAKER_QUAD">
+        <custom_mtmx_param_coeffs out_channel_index="0"  values="16384 0"/>
+        <custom_mtmx_param_coeffs out_channel_index="1"  values="0 16384"/>
+        <custom_mtmx_param_coeffs out_channel_index="2"  values="16384 0"/>
+        <custom_mtmx_param_coeffs out_channel_index="3"  values="0 16384"/>
+    </custom_mtmx_params>
     <microphone_characteristics>
         <microphone valid_mask="31" device_id="builtin_mic_1" type="AUDIO_DEVICE_IN_BUILTIN_MIC" address="bottom" location="AUDIO_MICROPHONE_LOCATION_MAINBODY"
             group="0" index_in_the_group="0" directionality="AUDIO_MICROPHONE_DIRECTIONALITY_OMNI" num_frequency_responses="93"
