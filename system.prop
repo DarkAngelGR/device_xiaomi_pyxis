@@ -74,6 +74,7 @@ use.voice.path.for.pcm.voip=true
 ro.netflix.bsp_rev=Q670-14477-1
 
 # Media
+media.stagefright.thumbnail.prefer_hw_codecs=true
 media.settings.xml=/vendor/etc/media_profiles_vendor.xml
 
 # Time
