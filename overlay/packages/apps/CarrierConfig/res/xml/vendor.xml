@@ -89,6 +89,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="carrier_rtt_downgrade_supported" value="false"/>
         <boolean name="show_rtt_visibility_setting_bool" value="false" />
         <boolean name="rtt_always_enabled_bool" value="false" />
+        <int name="default_rtt_mode_int" value="0" />
 
         <!-- HD/VOLTE icon support -->
         <boolean name="config_update_service_status" value="false"/>
@@ -628,7 +629,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="carrier_vt_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
     </carrier_config>
-    
+
     <carrier_config mcc="405" mnc="56">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_vt_available_bool" value="true" />
@@ -1822,217 +1823,217 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="49">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="40">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="10">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="3">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="45">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="31">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="16">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="2">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="70">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="70">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="92">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
-    </carrier_config>	
-	
+    </carrier_config>
+
     <carrier_config mcc="404" mnc="93">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="404" mnc="94">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
-    </carrier_config>		
-	
+    </carrier_config>
+
     <carrier_config mcc="404" mnc="95">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
-    </carrier_config>		
-	
+    </carrier_config>
+
     <carrier_config mcc="404" mnc="96">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
-    </carrier_config>			
-	
+    </carrier_config>
+
     <carrier_config mcc="404" mnc="97">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
-    </carrier_config>	
-	
+    </carrier_config>
+
     <carrier_config mcc="404" mnc="98">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
-    </carrier_config>		
-	
+    </carrier_config>
+
     <carrier_config mcc="405" mnc="92">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
-    </carrier_config>		
-	
+    </carrier_config>
+
     <carrier_config mcc="405" mnc="52">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
-    </carrier_config>	
-	
+    </carrier_config>
+
     <carrier_config mcc="405" mnc="56">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="405" mnc="55">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="405" mnc="53">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="405" mnc="54">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="405" mnc="51">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="470" mnc="01">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
-    </carrier_config>	
-	
+    </carrier_config>
+
     <carrier_config mcc="470" mnc="02">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="470" mnc="03">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="470" mnc="04">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="470" mnc="05">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="470" mnc="06">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="470" mnc="07">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="216" mnc="01">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="216" mnc="30">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="216" mnc="70">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config mcc="216" mnc="71">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="config_update_service_status" value="false"/>
     </carrier_config>
-	
+
     <carrier_config>
         <string-array name="ratchet_rat_families" num="3">
         <item value="1,2" />
