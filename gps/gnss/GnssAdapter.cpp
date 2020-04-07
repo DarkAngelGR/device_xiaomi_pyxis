@@ -1493,6 +1493,19 @@ GnssAdapter::gnssGetConfigCommand(GnssConfigFlagsMask configMask) {
                     errs[index++] = LOCATION_ERROR_NOT_SUPPORTED;
                 }
             }
+            if (mConfigMask & GNSS_CONFIG_FLAGS_ROBUST_LOCATION_BIT) {
+                uint32_t sessionId = *(mIds+index);
+                 LocApiResponse* locApiResponse =
+                        new LocApiResponse(*mAdapter.getContext(),
+                                           [this, sessionId] (LocationError err) {
+                                           mAdapter.reportResponse(err, sessionId);});
+                if (!locApiResponse) {
+                    LOC_LOGe("memory alloc failed");
+                    mAdapter.reportResponse(LOCATION_ERROR_GENERAL_FAILURE, sessionId);
+                } else {
+                   mApi.getRobustLocationConfig(sessionId, locApiResponse);
+                }
+            }
 
             mAdapter.reportResponse(index, errs, mIds);
             delete[] errs;
@@ -1715,7 +1728,8 @@ void GnssAdapter::reportGnssSvIdConfig(const GnssSvIdConfig& svIdConfig)
                  svIdConfig.bdsBlacklistSvMask, svIdConfig.gloBlacklistSvMask,
                  svIdConfig.qzssBlacklistSvMask, svIdConfig.galBlacklistSvMask,
                  svIdConfig.sbasBlacklistSvMask);
-        mControlCallbacks.gnssConfigCb(config);
+        // use 0 session id to indicate that receiver does not yet care about session id
+        mControlCallbacks.gnssConfigCb(0, config);
     } else {
         LOC_LOGe("Failed to report, size %d", (uint32_t)config.size);
     }
@@ -2168,8 +2182,6 @@ GnssAdapter::addClientCommand(LocationAPI* client, const LocationCallbacks& call
         inline virtual void proc() const {
             // check whether we need to notify client of cached location system info
             mAdapter.notifyClientOfCachedLocationSystemInfo(mClient, mCallbacks);
-            // check whether we need to request sv poly for the registered client
-            mAdapter.requestSvPolyForClient(mClient, mCallbacks);
             mAdapter.saveClient(mClient, mCallbacks);
         }
     };
@@ -2229,9 +2241,6 @@ GnssAdapter::updateClientsEventMask()
         }
         if (it->second.gnssMeasurementsCb != nullptr) {
             mask |= LOC_API_ADAPTER_BIT_GNSS_MEASUREMENT;
-        }
-        if (it->second.gnssSvPolynomialCb != nullptr) {
-            mask |= LOC_API_ADAPTER_BIT_GNSS_SV_POLYNOMIAL_REPORT;
         }
         if (it->second.gnssDataCb != nullptr) {
             mask |= LOC_API_ADAPTER_BIT_PARSED_POSITION_REPORT;
@@ -2433,8 +2442,7 @@ GnssAdapter::hasCallbacksToStartTracking(LocationAPI* client)
     auto it = mClientData.find(client);
     if (it != mClientData.end()) {
         if (it->second.trackingCb || it->second.gnssLocationInfoCb ||
-            it->second.engineLocationsInfoCb || it->second.gnssMeasurementsCb ||
-            it->second.gnssSvPolynomialCb) {
+            it->second.engineLocationsInfoCb || it->second.gnssMeasurementsCb) {
             allowed = true;
         } else {
             LOC_LOGi("missing right callback to start tracking")
@@ -3492,12 +3500,18 @@ GnssAdapter::reportPosition(const UlpLocation& ulpLocation,
                 }
             }
 
-            // if PACE is enabled and engine hub is running and the fix is from sensor,
-            // e.g.: DRE, inject DRE fix to modem
-            if ((true == mLocConfigInfo.paceConfigInfo.isValid &&
-                 true == mLocConfigInfo.paceConfigInfo.enable) &&
-                (true == initEngHubProxy()) && (LOC_POS_TECH_MASK_SENSORS & techMask)) {
-                mLocApi->injectPosition(locationInfo, false);
+            // if PACE is enabled
+            if ((true == mLocConfigInfo.paceConfigInfo.isValid) &&
+                    (true == mLocConfigInfo.paceConfigInfo.enable)) {
+                // If fix has sensor contribution, and it is fused fix with DRE engine
+                // contributing to the fix, inject to modem
+                if ((LOC_POS_TECH_MASK_SENSORS & techMask) &&
+                        (locationInfo.flags & GNSS_LOCATION_INFO_OUTPUT_ENG_TYPE_BIT) &&
+                        (locationInfo.locOutputEngType == LOC_OUTPUT_ENGINE_FUSED) &&
+                        (locationInfo.flags & GNSS_LOCATION_INFO_OUTPUT_ENG_MASK_BIT) &&
+                        (locationInfo.locOutputEngMask & DEAD_RECKONING_ENGINE)) {
+                    mLocApi->injectPosition(locationInfo, false);
+                }
             }
         }
     }
@@ -4180,52 +4194,10 @@ GnssAdapter::reportGnssMeasurementData(const GnssMeasurementsNotification& measu
 }
 
 void
-GnssAdapter::requestSvPolyForClient(LocationAPI* client, const LocationCallbacks& callbacks) {
-    if (callbacks.gnssSvPolynomialCb) {
-        LocationCallbacks oldCallbacks = getClientCallbacks(client);
-        if (!oldCallbacks.gnssSvPolynomialCb) {
-            LOC_LOGd("request sv poly");
-            GnssAidingDataSvMask svDataMask = GNSS_AIDING_DATA_SV_POLY_BIT;
-            mLocApi->requestForAidingData(svDataMask);
-        }
-    }
-}
-
-void
-GnssAdapter::reportSvPolynomial(const GnssSvPolynomial &svPolynomial)
-{
-    for (auto it=mClientData.begin(); it != mClientData.end(); ++it) {
-        if (nullptr != it->second.gnssSvPolynomialCb) {
-            it->second.gnssSvPolynomialCb(svPolynomial);
-        }
-    }
-}
-
-void
 GnssAdapter::reportSvPolynomialEvent(GnssSvPolynomial &svPolynomial)
 {
     LOC_LOGD("%s]: ", __func__);
-
-    // report SV poly to engine hub to dispatch to engine plugins
     mEngHubProxy->gnssReportSvPolynomial(svPolynomial);
-
-    // report SV poly to registered client
-    struct MsgReportGnssSvPolynomial : public LocMsg {
-        GnssAdapter& mAdapter;
-        GnssSvPolynomial mGnssSvPolynomialNotify;
-        inline MsgReportGnssSvPolynomial(GnssAdapter& adapter,
-                                         const GnssSvPolynomial& svPoly) :
-                LocMsg(),
-                mAdapter(adapter),
-                mGnssSvPolynomialNotify(svPoly) {
-        }
-
-        inline virtual void proc() const {
-            mAdapter.reportSvPolynomial(mGnssSvPolynomialNotify);
-        }
-    };
-
-    sendMsg(new MsgReportGnssSvPolynomial(*this, svPolynomial));
 }
 
 void
@@ -5495,16 +5467,6 @@ void
 GnssAdapter::configRobustLocation(uint32_t sessionId,
                                   bool enable, bool enableForE911) {
 
-
-    if ((mLocConfigInfo.robustLocationConfigInfo.isValid == true) &&
-            (mLocConfigInfo.robustLocationConfigInfo.enable == enable) &&
-            (mLocConfigInfo.robustLocationConfigInfo.enableFor911 == enableForE911)) {
-        // no change in configuration, inform client of response and simply return
-        reportResponse(LOCATION_ERROR_SUCCESS, sessionId);
-        return;
-    }
-
-
     mLocConfigInfo.robustLocationConfigInfo.isValid = true;
     mLocConfigInfo.robustLocationConfigInfo.enable = enable;
     mLocConfigInfo.robustLocationConfigInfo.enableFor911 = enableForE911;
@@ -5557,6 +5519,32 @@ uint32_t GnssAdapter::configRobustLocationCommand(
 
     sendMsg(new MsgConfigRobustLocation(*this, sessionId, enable, enableForE911));
     return sessionId;
+}
+
+void GnssAdapter::reportGnssConfigEvent(uint32_t sessionId, const GnssConfig& gnssConfig)
+{
+    struct MsgReportGnssConfig : public LocMsg {
+        GnssAdapter& mAdapter;
+        uint32_t     mSessionId;
+        mutable GnssConfig   mGnssConfig;
+        inline MsgReportGnssConfig(GnssAdapter& adapter,
+                                   uint32_t sessionId,
+                                   const GnssConfig& gnssConfig) :
+            LocMsg(),
+            mAdapter(adapter),
+            mSessionId(sessionId),
+            mGnssConfig(gnssConfig) {}
+        inline virtual void proc() const {
+            // Invoke control clients config callback
+            if (nullptr != mAdapter.mControlCallbacks.gnssConfigCb) {
+                mAdapter.mControlCallbacks.gnssConfigCb(mSessionId, mGnssConfig);
+            } else {
+                LOC_LOGe("Failed to report, callback not registered");
+            }
+        }
+    };
+
+    sendMsg(new MsgReportGnssConfig(*this, sessionId, gnssConfig));
 }
 
 /* ==== Eng Hub Proxy ================================================================= */
