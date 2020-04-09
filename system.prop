@@ -13,7 +13,7 @@ vendor.bluetooth.soc=cherokee
 
 # Camera
 persist.camera.gyro.disable=0
-vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,org.lineageos.snap
+vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,org.lineageos.snap,com.motorola.faceunlock
 persist.camera.cfa.thres.front=0
 persist.camera.cfa.thres.rear=200
 persist.camera.sat.fallback.dist=28
@@ -77,6 +77,9 @@ ro.netflix.bsp_rev=Q670-14477-1
 
 # Media
 media.settings.xml=/vendor/etc/media_profiles_vendor.xml
+
+# Face Unlock
+ro.face.moto_unlock_service.cam_id=1
 
 # Wireless display
 debug.sf.latch_unsignaled=1
