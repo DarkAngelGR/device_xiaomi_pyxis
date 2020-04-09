@@ -176,7 +176,6 @@ persist.radio.NO_STAPA=1
 persist.radio.sar_sar_sensor=true
 persist.sys.strictmode.disable=true
 persist.vendor.radio.apm_sim_not_pwdn=1
-persist.vendor.radio.atfwd.start=true
 persist.vendor.radio.custom_ecc=1
 persist.vendor.radio.flexmap_type=none
 persist.vendor.radio.data_ltd_sys_ind=1
