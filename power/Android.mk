@@ -39,9 +39,6 @@ LOCAL_HEADER_LIBRARIES += libutils_headers
 LOCAL_HEADER_LIBRARIES += libhardware_headers
 
 LOCAL_CFLAGS += -Werror -Wall -Wno-unused-parameter
-
-ifeq ($(TARGET_USES_INTERACTION_BOOST),true)
-    LOCAL_CFLAGS += -DINTERACTION_BOOST
-endif
+LOCAL_CFLAGS += -DINTERACTION_BOOST
 
 include $(BUILD_EXECUTABLE)
