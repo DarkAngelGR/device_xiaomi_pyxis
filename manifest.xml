@@ -422,7 +422,6 @@
             <name>IBluetoothAudioProvidersFactory</name>
             <instance>default</instance>
         </interface>
-        <fqname>@2.0::IBluetoothAudioProvidersFactory/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.qti.hardware.bluetooth_sar</name>
@@ -432,7 +431,6 @@
             <name>IBluetoothSar</name>
             <instance>default</instance>
         </interface>
-        <fqname>@1.0::IBluetoothSar/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.qti.hardware.btconfigstore</name>
@@ -815,7 +813,6 @@
             <name>IAtCmdFwd</name>
             <instance>AtCmdFwdService</instance>
         </interface>
-        <fqname>@1.0::IAtCmdFwd/AtCmdFwdService</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.qti.hardware.wifi.keystore</name>
@@ -825,7 +822,6 @@
             <name>IKeystoreExt</name>
             <instance>default</instance>
         </interface>
-        <fqname>@1.0::IKeystoreExt/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.nfc</name>
