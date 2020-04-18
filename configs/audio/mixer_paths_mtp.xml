@@ -2914,11 +2914,9 @@
     </path>
 
     <path name="mmap-record">
-      <ctl name="MultiMedia16 Mixer INT3_MI2S_TX " value="1" />
     </path>
 
     <path name="mmap-record bt-sco">
-      <ctl name="MultiMedia16 Mixer SLIM_7_TX" value="1" />
     </path>
 
     <path name="mmap-record bt-sco-wb">
@@ -2927,7 +2925,6 @@
     </path>
 
     <path name="mmap-record capture-fm">
-      <ctl name="MultiMedia16 Mixer SLIM_8_TX" value="1" />
     </path>
 
     <path name="mmap-record usb-headset-mic">
