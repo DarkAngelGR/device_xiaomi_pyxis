@@ -286,6 +286,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.qcom.usb.sh \
+    init.qti.fm.sh \
     init.qcom.early_boot.sh \
     init.msm.usb.configfs.rc \
     init.qcom.rc \
