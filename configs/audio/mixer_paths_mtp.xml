@@ -1785,10 +1785,12 @@
     </path>
 
    <path name="hfp-sco-wb">
+        <ctl name="BT SampleRate" value="KHZ_16" />
         <path name="hfp-sco" />
    </path>
 
     <path name="hfp-sco-wb headphones">
+        <ctl name="BT SampleRate" value="KHZ_16" />
         <path name="hfp-sco headphones" />
     </path>
 
@@ -2068,7 +2070,7 @@
 
     <path name="audio-playback-voip speaker-safe-and-display-port">
         <path name="audio-playback-voip display-port" />
-        <path name="audio-playback-voip speaker-safe" />
+        <path name="audio-playback-voip speaker" />
     </path>
 
     <!-- VoIP Tx settings -->
@@ -2336,7 +2338,7 @@
 
     <path name="speaker-safe-and-headphones">
         <path name="headphones" />
-        <path name="speaker-safe" />
+        <path name="speaker" />
     </path>
 
     <path name="speaker-and-line">
@@ -2407,7 +2409,7 @@
     </path>
 
     <path name="speaker-safe-and-usb-headphones">
-        <path name="speaker-safe" />
+        <path name="speaker" />
         <path name="usb-headphones" />
     </path>
 
@@ -2821,7 +2823,7 @@
 
     <path name="compress-offload-playback8 speaker-safe-and-bt-a2dp">
         <path name="compress-offload-playback8 bt-a2dp" />
-        <path name="compress-offload-playback8 speaker-safe" />
+        <path name="compress-offload-playback8 speaker" />
     </path>
 
     <path name="compress-offload-playback9 speaker-and-bt-a2dp">
