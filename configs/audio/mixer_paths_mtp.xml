@@ -297,28 +297,12 @@
 
     <!-- Codec controls -->
     <!-- WSA controls -->
-    <ctl name="SpkrLeft COMP Switch" value="0" />
-    <ctl name="SpkrRight COMP Switch" value="0" />
-    <ctl name="SpkrLeft BOOST Switch" value="0" />
-    <ctl name="SpkrRight BOOST Switch" value="0" />
-    <ctl name="SpkrLeft VISENSE Switch" value="0" />
-    <ctl name="SpkrRight VISENSE Switch" value="0" />
-    <ctl name="SpkrLeft SWR DAC_Port Switch" value="0" />
-    <ctl name="SpkrRight SWR DAC_Port Switch" value="0" />
-    <ctl name="SpkrLeft WSA PA Gain" value="G_0_DB" />
-    <ctl name="SpkrRight WSA PA Gain" value="G_0_DB" />
-    <ctl name="SpkrLeft WSA PA Mute" value="1" />
-    <ctl name="SpkrRight WSA PA Mute" value="1" />
     <ctl name="EAR SPKR PA Gain" value="G_DEFAULT" />
 
     <!-- Volume controls -->
-    <ctl name="HPHL Volume" value="9" />
-    <ctl name="HPHR Volume" value="9" />
     <ctl name="EAR PA Gain" value="POS_6_DB" />
     <ctl name="EAR PA Boost" value="DISABLE" />
 
-    <ctl name="RX1 Digital Volume" value="88" />
-    <ctl name="RX2 Digital Volume" value="88" />
     <ctl name="RX3 Digital Volume" value="88" />
     <ctl name="RX4 Digital Volume" value="88" />
     <ctl name="RX5 Digital Volume" value="88" />
@@ -341,7 +325,6 @@
     <ctl name="PRIM_MI2S_TX Channels" value="Two" />
     <ctl name="PRIM_MI2S_TX Format" value="S24_LE" />
     <ctl name="PRIM_MI2S_TX SampleRate" value="KHZ_48" />
-    <ctl name="PRI_MI2S_RX_VI_FB_MUX" value="ZERO" />
     <ctl name="PRIM_MI2S_RX SampleRate" value="KHZ_48" />
 
     <!-- MUX controls -->
@@ -412,56 +395,6 @@
     <ctl name="MultiMedia29 Mixer INT3_MI2S_TX" value="0" />
 
     <!-- Add the new path begin -->
-    <path name="deep-buffer-playback speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia1" value="1" />
-    </path>
-
-    <path name="low-latency-playback speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia5" value="1" />
-    </path>
-
-    <path name="compress-offload-playback speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia4" value="1" />
-    </path>
-
-    <path name="compress-offload-playback2 speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia7" value="1" />
-    </path>
-
-    <path name="compress-offload-playback3 speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia10" value="1" />
-    </path>
-
-    <path name="compress-offload-playback4 speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia11" value="1" />
-    </path>
-
-    <path name="compress-offload-playback5 speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia12" value="1" />
-    </path>
-
-    <path name="compress-offload-playback6 speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia13" value="1" />
-    </path>
-
-    <path name="compress-offload-playback7 speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia14" value="1" />
-    </path>
-
-    <path name="compress-offload-playback8 speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia15" value="1" />
-    </path>
-
-    <path name="compress-offload-playback9 speaker">
-        <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia16" value="1" />
-    </path>
-
-    <path name="compress-voip-call speaker">
-        <ctl name="VOC_EXT_EC MUX" value="PRI_MI2S_TX" />
-        <ctl name="PRI_MI2S_RX_Voice Mixer Voip" value="1" />
-        <ctl name="Voip_Tx Mixer INT3_MI2S_TX_Voip" value="1" />
-    </path>
-
     <path name="voicemmode1-call speaker">
         <ctl name="VOC_EXT_EC MUX" value="PRI_MI2S_TX" />
         <ctl name="PRI_MI2S_RX_Voice Mixer VoiceMMode1" value="1" />
@@ -492,15 +425,6 @@
         <ctl name="PRI_MI2S_RX_DL_HL Switch" value="1" />
     </path>
 
-    <!-- Add the new path end -->
-
-    <!-- dspg voice wakeup -->
-    <ctl name="Load acoustic model" value="0" />
-    <ctl name="Acoustic Model" />
-    <ctl name="Backlog size" value="0" />
-    <ctl name="Microphone mode" value="4" />
-    <!-- dspg voice wakeup end -->
-
     <!-- Codec controls end -->
 
     <!-- mixer control to disable lowlatency qos voting -->
@@ -509,7 +433,6 @@
 
     <!-- These are audio route (FE to BE) specific mixer settings -->
     <path name="gsm-mode">
-        <ctl name="GSM mode Enable" value="ON" />
     </path>
 
     <path name="echo-reference">
@@ -542,7 +465,7 @@
     </path>
 
     <path name="echo-reference-voip headphones">
-        <ctl name="AUDIO_REF_EC_UL10 MUX" value="RX_CDC_DMA_RX_0" />
+        <ctl name="AUDIO_REF_EC_UL10 MUX" value="INT0_MI2S_RX" />
         <ctl name="EC Reference Channels" value="Two"/>
     </path>
 
@@ -1705,7 +1628,6 @@
     </path>
 
     <path name="low-latency-record capture-fm">
-      <ctl name="MultiMedia8 Mixer SLIM_8_TX" value="1" />
     </path>
 
     <path name="fm-virtual-record capture-fm">
@@ -1876,7 +1798,9 @@
     </path>
 
     <path name="compress-voip-call speaker">
+        <ctl name="VOC_EXT_EC MUX" value="PRI_MI2S_TX" />
         <ctl name="PRI_MI2S_RX_Voice Mixer Voip" value="1" />
+        <ctl name="Voip_Tx Mixer INT3_MI2S_TX_Voip" value="1" />
     </path>
 
     <path name="compress-voip-call handset">
@@ -2134,7 +2058,7 @@
     </path>
 
     <path name="audio-playback-voip display-port">
-        <ctl name="DISPLAY_PORT Audio Mixer MultiMedia10" value="1" />
+        <ctl name="DISPLAY_PORT Mixer MultiMedia10" value="1" />
     </path>
 
     <path name="audio-playback-voip speaker-and-display-port">
@@ -2349,8 +2273,6 @@
         <ctl name="COMP0 RX2" value="0" />
         <ctl name="HPHL" value="Switch" />
         <ctl name="HPHR" value="Switch" />
-        <ctl name="RX1 Digital Volume" value="78" />
-        <ctl name="RX2 Digital Volume" value="78" />
     </path>
 
     <path name="headphones-44.1">
@@ -2397,8 +2319,6 @@
 
     <path name="voice-headphones">
         <path name="headphones" />
-        <ctl name="RX1 Digital Volume" value="88" />
-        <ctl name="RX2 Digital Volume" value="88" />
     </path>
 
     <path name="voice-line">
