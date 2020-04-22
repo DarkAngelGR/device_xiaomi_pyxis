@@ -150,6 +150,8 @@ PRODUCT_PACKAGES += \
 
 # Codec2 modules
 PRODUCT_PACKAGES += \
+    libcodec2_vndk.vendor \
+    libcodec2_hidl@1.0.vendor \
     com.android.media.swcodec \
     libsfplugin_ccodec
 
