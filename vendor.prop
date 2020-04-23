@@ -99,7 +99,6 @@ persist.vendor.qcom.bluetooth.enable.splita2dp=true
 persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 ro.bluetooth.a2dp_offload.supported=true
 vendor.qcom.bluetooth.soc=cherokee
-vendor.bluetooth.soc=cherokee
 
 # Display post-processing
 ro.vendor.display.cabl=2
@@ -149,15 +148,8 @@ ro.vendor.audio.soundtrigger.hist.duration=1500
 # RCS
 persist.rcs.supported=0
 
-# Camera
-camera.disable_zsl_mode=true
-
 # Fwk detect
 ro.vendor.qti.va_aosp.support=1
-
-# Data modules
-persist.vendor.data.mode=concurrent
-ro.vendor.use_data_netmgrd=true
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so

@@ -9,8 +9,10 @@ ro.config.vc_call_vol_steps=7
 # Bluetooth
 persist.bluetooth.bqr.event_mask=14
 persist.bluetooth.bqr.min_interval_ms=500
+vendor.bluetooth.soc=cherokee
 
 # Camera
+camera.disable_zsl_mode=true
 persist.camera.gyro.disable=0
 vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,org.lineageos.snap,com.motorola.faceunlock
 persist.camera.cfa.thres.front=0
@@ -25,7 +27,8 @@ persist.vendor.cne.feature=1
 
 # Data
 persist.data.df.dev_name=rmnet_usb0
-persist.vendor.data.profile_update=true
+persist.vendor.data.mode=concurrent
+ro.vendor.use_data_netmgrd=true
 
 # DPM
 persist.vendor.dpm.feature=1
