@@ -80,6 +80,9 @@ ro.netflix.bsp_rev=Q670-14477-1
 
 # Media
 media.settings.xml=/vendor/etc/media_profiles_vendor.xml
+debug.stagefright.ccodec=1
+debug.stagefright.omx_default_rank.sw-audio=1
+debug.stagefright.omx_default_rank=0
 
 # Face Unlock
 ro.face.moto_unlock_service.cam_id=1
