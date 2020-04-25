@@ -47,10 +47,12 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CLANG_VERSION := 6364210
-TARGET_KERNEL_SOURCE := kernel/xiaomi/pyxis_caf
-TARGET_KERNEL_CONFIG := pyxis_defconfig
+KERNEL_TOOLCHAIN_arm64 := $(GCC_PREBUILTS)/aarch64/aarch64-buildroot-linux-musl/bin
+KERNEL_TOOLCHAIN_PREFIX_arm64 := aarch64-buildroot-linux-musl-
+KERNEL_TOOLCHAIN_arm := $(GCC_PREBUILTS)/arm/arm-buildroot-linux-musleabihf/bin
+KERNEL_TOOLCHAIN_PREFIX_arm := arm-buildroot-linux-musleabihf-
+TARGET_KERNEL_SOURCE := kernel/xiaomi/sdm710
+TARGET_KERNEL_CONFIG := icecream-pyxis_defconfig
 
 # Platform
 TARGET_BOARD_PLATFORM := sdm710
