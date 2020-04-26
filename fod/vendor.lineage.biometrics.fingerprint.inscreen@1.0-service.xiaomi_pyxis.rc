@@ -13,8 +13,8 @@ on init
     chown system system /dev/input/event2
     chmod 0666 /dev/input/event2
 
-service fingerprint-inscreen-1-1 /vendor/bin/hw/vendor.lineage.biometrics.fingerprint.inscreen@1.1-service.xiaomi_pyxis
-    interface vendor.lineage.biometrics.fingerprint.inscreen@1.1::IFingerprintInscreen default
+service fingerprint-inscreen-1-0 /vendor/bin/hw/vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_pyxis
+    interface vendor.lineage.biometrics.fingerprint.inscreen@1.0::IFingerprintInscreen default
     class hal
     user system
     group system wakelock
