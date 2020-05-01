@@ -326,7 +326,8 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.3-service.xiaomi-libperfmgr
+    android.hardware.power@1.3-service.xiaomi-libperfmgr \
+    android.hardware.power.stats@1.0-service.pixel
 
 # Perf & Power
 PRODUCT_COPY_FILES += \
@@ -385,6 +386,11 @@ PRODUCT_COPY_FILES += \
 # IRQ
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH) \
+    hardware/google/pixel
 
 # Telephony
 PRODUCT_PACKAGES += \
