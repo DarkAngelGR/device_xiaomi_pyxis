@@ -1117,4 +1117,8 @@
     <bool name="config_dozePulsePickup">true</bool>
     <bool name="config_dozePulseTilt">true</bool>
     <bool name="config_dozePulseProximity">true</bool>
+
+    <!-- Whether to show a custom view for FOD -->
+    <bool name="config_needCustomFODView">true</bool>
+
 </resources>
