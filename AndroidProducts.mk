@@ -5,8 +5,8 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_pyxis.mk
+    $(LOCAL_DIR)/stag_pyxis.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_pyxis-userdebug \
-    lineage_pyxis-user
+    stag_pyxis-userdebug \
+    stag_pyxis-user

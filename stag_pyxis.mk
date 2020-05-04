@@ -4,15 +4,15 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common StagOS stuff.
+$(call inherit-product, vendor/stag/main.mk)
 
 # Inherit from pyxis device.
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_DEVICE := pyxis
-PRODUCT_NAME := lineage_pyxis
+PRODUCT_NAME := stag_pyxis
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MANUFACTURER := Xiaomi
 
