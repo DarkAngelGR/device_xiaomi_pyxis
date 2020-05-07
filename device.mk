@@ -31,7 +31,8 @@ EXTRA_FOD_ANIMATIONS := true
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay
+    $(LOCAL_PATH)/overlay \
+    $(LOCAL_PATH)/overlay-derpfest
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
