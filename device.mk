@@ -178,7 +178,7 @@ PRODUCT_PACKAGES += \
     vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor
 
 PRODUCT_COPY_FILES += \
-    vendor/lineage/config/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml \
+    vendor/aosip/config/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml \
     $(LOCAL_PATH)/configs/fingerprint/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_pyxis.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.biometrics.fingerprint@2.1-service.xiaomi_pyxis.rc
 
 # Net
@@ -209,7 +209,7 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     libvulkan \
     memtrack.sdm710 \
-    vendor.display.config@1.9 \
+    vendor.display.config@1.7 \
     vendor.qti.hardware.display.allocator@1.0-service
 
 # Audio

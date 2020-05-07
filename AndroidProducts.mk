@@ -5,8 +5,8 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/stag_pyxis.mk
+    $(LOCAL_DIR)/derp_pyxis.mk
 
 COMMON_LUNCH_CHOICES := \
-    stag_pyxis-userdebug \
-    stag_pyxis-user
+    derp_pyxis-userdebug \
+    derp_pyxis-user
